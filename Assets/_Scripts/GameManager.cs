@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,12 +19,28 @@ public class GameManager : MonoBehaviour
         else
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
     }
     #endregion /Singleton And Awake
 
     public CardScriptSO[] cards;
+
+    public Transform levelCompleteUI;
+
+    private void Start()
+    {
+        MyEventsManager.instance.onGameWon += ShowLevelCompleteUI;
+    }
+
+    private void OnDestroy()
+    {
+        MyEventsManager.instance.onGameWon -= ShowLevelCompleteUI;
+    }
+
+    private void ShowLevelCompleteUI()
+    {
+        levelCompleteUI.gameObject.SetActive(true);
+    }
 
     public void ReloadScene()
     {
@@ -34,4 +51,6 @@ public class GameManager : MonoBehaviour
     {
         Application.Quit();
     }
+
+    
 }

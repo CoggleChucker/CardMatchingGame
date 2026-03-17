@@ -25,6 +25,8 @@ public class SetupGrid : MonoBehaviour
     private void InitiateGrid()
     {
         int requiredCards = (numberOfRows * numberOfColums)/2;
+        MatchManager.instance.SetMaxMatchNumber(requiredCards);
+
         for (int i = 1; i <= requiredCards; i++)
         {
             values.Add(i);
@@ -49,6 +51,7 @@ public class SetupGrid : MonoBehaviour
         {
             GameObject card = Instantiate(cardPrefab, gridHolder);
             card.GetComponent<Card>().SetupCard(values[i]);
+            card.GetComponent<Card>().TurnCard();
         }
     }
 
