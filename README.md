@@ -33,6 +33,3 @@ Step4: open newly created project
 
       Change the number of rows from "SetupGrid" script
   
-      To change number of colums, open the script and change the private variable called "numberOfColums"
-  
-      <b><i>Note: Keep in mind that the multiplication of colums and rows must be even.</i></b>
